@@ -16,7 +16,16 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
+    {
+    pool: {
+      max: 15,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    }
+  }
+
   );
 }
 

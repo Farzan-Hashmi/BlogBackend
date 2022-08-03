@@ -6,7 +6,10 @@ const { body, validationResult } = require("express-validator");
 
 //gets all posts
 router.get("/", async (req, res) => {
-  const listofPosts = await Posts.findAll({ include: [Likes, Comments] });
+  const listofPosts = await Posts.findAll({
+    order: [["updatedAt", "ASC"]],
+    include: [Likes, Comments],
+  });
   res.json(listofPosts);
 });
 

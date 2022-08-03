@@ -1,6 +1,7 @@
 const express = require("express"); //instance of the framework express
 const db = require("./models");
 const cors = require("cors"); //to whitelist our react frontend and allow it to access the api/backend
+
 require("dotenv").config(); //to get the environment variables
 
 const app = express();
@@ -21,7 +22,7 @@ app.use("/auth", usersRouter);
 app.use("/like", likesRouter);
 
 db.sequelize.sync().then(() => {
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 3001, () => {
     console.log("Server is running");
   });
 }); //sync and start the api. the app.listen is the starting point and we check to see if every table in models (file) exists in the database and create them if they dont
